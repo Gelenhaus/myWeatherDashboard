@@ -13,8 +13,11 @@ var gettingCitiesFunction = function () {
     var typedInContent = typedInCityEl.value;
 
     // Store
-    localStorage.setItem("cityName", typedInContent);
-
+    localStorage.setItem(typedInContent, typedInContent);
+    var newOldCity = document.createElement('button');
+    newOldCity.id = typedInContent;
+    newOldCity.textContent = typedInContent;
+    whereToPutOldCities.appendChild(newOldCity);
 
 
 
@@ -25,7 +28,20 @@ var gettingCitiesFunction = function () {
             return response.json();
         }).then(data => {
             myArray = data;
-            // console.log(myArray);
+            console.log(myArray);
+
+
+            today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            var sp = "/";
+            var mahDate = (mm + sp + dd + sp + yyyy);
+            console.log(mahDate);
+
+
+
+
 
             var mahIcon = myArray.weather[0].icon;
             // console.log(mahIcon);
@@ -41,7 +57,11 @@ var gettingCitiesFunction = function () {
             var todayTitle = document.createElement('h1');
             todayTitle.textContent = "TODAYS WEATHER";
             newAddition.textContent = weatherAttributes;
+            var daDate = document.createElement('div');
+            daDate.textContent = mahDate;
+
             whereToPutWeather.appendChild(todayTitle);
+            whereToPutWeather.appendChild(daDate);
             whereToPutWeather.appendChild(iconImage);
             whereToPutWeather.appendChild(newAddition);
             whereToPutWeather.appendChild(space);
@@ -65,14 +85,20 @@ var gettingFiveDay = function () {
             fiveDayTitle.textContent = "Five Day Forecast";
             whereToPutWeather.appendChild(fiveDayTitle);
 
-            for (var i = 1; i < 39; i += 8) {
+            for (var i = 2; i < 39; i += 8) {
                 var dahIcon = myFiveArray.list[i].weather[0].icon;
                 // console.log(i);
                 // console.log(dahIcon);
 
+
+                var fiveDate = document.createElement('div');
+                fiveDate.textContent = myFiveArray.list[i].dt_txt;
+                // console.log(fiveDate);
+                whereToPutWeather.appendChild(fiveDate);
                 const icons = document.createElement('img');
                 icons.src = 'http://openweathermap.org/img/wn/' + dahIcon + '@2x.png';
                 whereToPutWeather.appendChild(icons);
+
 
                 var theWeatherWillBe = " Temperature: " + myFiveArray.list[i].main.temp + " Wind Speed: " + myFiveArray.list[i].wind.speed + " Humidity: " + myFiveArray.list[i].main.humidity;
                 // console.log(theWeatherWillBe);
@@ -83,10 +109,18 @@ var gettingFiveDay = function () {
         });
 };
 
+whereToPutOldCities.addEventListener("click", () => {
+    var whatWeClicked = event.target;
+    console.log(whatWeClicked);
+});
+
 submitButtonEl.addEventListener("click", () => {
+
     gettingCitiesFunction();
     gettingFiveDay();
 });
+
+
 
 
 
