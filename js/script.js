@@ -21,7 +21,7 @@ var gettingCitiesFunction = function () {
 
 
 
-    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + typedInContent + "&units=imperial&appid=d39be77cf7aaa059d24bf872ae34d526";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + typedInContent + "&units=imperial&appid=d39be77cf7aaa059d24bf872ae34d526";
 
     fetch(apiUrl)
         .then(response => {
@@ -49,7 +49,7 @@ var gettingCitiesFunction = function () {
             weatherAttributes = "Your selected city of " + myArray.name + " Has a wind speed of " + myArray.wind.speed + " with a temperature of " + myArray.main.temp + " fahrenheit " + " With " + myArray.main.humidity + "% humidity";
 
             const iconImage = document.createElement('img');
-            iconImage.src = 'http://openweathermap.org/img/wn/' + mahIcon + '@2x.png';
+            iconImage.src = 'https://openweathermap.org/img/wn/' + mahIcon + '@2x.png';
 
             var space = document.createElement('div');
             space.innerHTML = "<br></br>";
@@ -70,7 +70,7 @@ var gettingCitiesFunction = function () {
 
 var gettingFiveDay = function () {
     var typedInCity = typedInCityEl.value;
-    var apiFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + typedInCity + "&appid=e9bf4eae67ac379ae2322ee990868590";
+    var apiFiveDay = "https://api.openweathermap.org/data/2.5/forecast?q=" + typedInCity + "&appid=e9bf4eae67ac379ae2322ee990868590";
 
     fetch(apiFiveDay)
         .then(response => {
@@ -96,7 +96,7 @@ var gettingFiveDay = function () {
                 // console.log(fiveDate);
                 whereToPutWeather.appendChild(fiveDate);
                 const icons = document.createElement('img');
-                icons.src = 'http://openweathermap.org/img/wn/' + dahIcon + '@2x.png';
+                icons.src = 'https://openweathermap.org/img/wn/' + dahIcon + '@2x.png';
                 whereToPutWeather.appendChild(icons);
 
 
